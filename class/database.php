@@ -47,6 +47,7 @@ function displayFooter(){
             }
 
             return $this->conn;
+            //HI Yuji-san
         }
     }
 ?>
