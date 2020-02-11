@@ -1,5 +1,9 @@
 
-<?php include '../class/database.php';?>
+<?php include '../userAction.php';
+      include '../class/displayheader.php';
+      include '../class/displayFooter.php';
+      
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -71,12 +75,14 @@
               <button type="submit" name="save" class="btn btn-outline-primary form-control">SAVE</button>
             </div>
             <div class="form-group col-md-3">
-              
+                <input type="file" name="photo" class="form-control">
+                <input type='submit' value='Upload' name='upload' class="btn btn-primary btn-block">
             </div>
             <div class="form-group col-md-3 text-right">
               <a href="calculator.php">calculator</a>
             </div>
             <div class="form-group col-md-3">
+              <p> <span class="glyphicon glyphicon-time"></span>Feb22, 2020</p>
               <input type="number " name="totalFee" class="form-control" placeholder="Total Fee">
             </div>
           </div>

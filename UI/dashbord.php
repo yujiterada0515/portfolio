@@ -1,4 +1,9 @@
-<?php include '../class/database.php';?>
+<?php 
+   include '../userAction.php';
+   include '../class/displayheader.php';
+   include '../class/displayFooter.php';
+   // include '../class/database.php';
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -41,21 +46,30 @@
                 <th></th>
                 </tr>
             </thead>
-            <?php while($rows = mysqli_fatch_assoc($result)){
-
-            } ?>
             <tbody>
+             <?php
+
+               $userlist = $user->getAllcontracts();
+
+               foreach($userlist as $user){
+                  $userID = $user['contract_id'];
+
+              echo "
                 <tr>
-                <th scope="row"><?php echo $rows['contract_id'] ?></th>
-                <td><?php echo $rows['client_name']; ?></td>
-                <td><?php echo $rows['start_date']; ?></td>
+                <th scope='row'>".$user['contract_id']."</th>
+                <td>".$user['client_name']."</td>
+                <td>".$user['start_date']."</td>
                 <td>Yes or No</td>
-                <td><?php echo $rows['deadline_date']; ?></td>
-                <td><?php echo $rows['claim_day']; ?></td>
-                <td><a href=""><button type="button" class="btn btn-outline-warning"><i class="fas fa-edit">Detail</i></button></a></td>
-                <td><a href=""><button type="button" class="btn btn-outline-danger">Delete</button></a></td>
+                <td>".$user['deadline_date']."</td>
+                <td>".$user['claim_day']."</td>
+                <td><a href=''><button type='button' class='btn btn-outline-warning'><i class='fas fa-edit'>Detail</i></button></a></td>
+                <td><a href=''><button type='button' class='btn btn-outline-danger'>Delete</button></a></td>
                 </tr>
+                ";
+                 }
+               ?>
             </tbody>
+                  
             </table>
             <div class="dataTables_paginate paging_simple_numbers" id="dataTable_paginat">
                <ul class="pagination">
