@@ -1,7 +1,6 @@
-<?php 
-      include '../userAction.php'; 
-      include '../class/displayheader.php';
-      include '../class/displayFooter.php';
+<?php
+    include '../class/displayheader.php';
+    include '../class/displayFooter.php';
 ?>
 
 <!DOCTYPE html>
@@ -19,17 +18,32 @@
 
    <?php displayHeader(); ?>
 
-   <div class="container">
+   <div class="container-fluid">
      <h2 class="display-3 text-light text-center bg-primary">Calculator</h2>
-     
-     <form action="" method="post">
-       <div class="form-group col-md-12 mb-4 mt-5 text-center">
-         <h4>How many items do you need?</h4>         
-         <input type="number" name="item_counts" >
-         <button type="submit" name="submit_count" class="btn btn-primary form-control w-25 ml-4">Submit Count</button>
-       </div>
-       </form>
    </div>
+     
+    <div class="container mt-4">
+     <div class="row text-center">
+       <div class="col-md-12">
+         <h1 class="display-4">How many Items do you need?</h1>
+       </div>
+     </div> 
+     <form action="" method="post">
+       <div class="form-row mt-3">
+         <div class="form-group col-md-6 mx-auto">
+            <input type="number" name="item_count" id="" class="text-center form-control">
+         </div>
+       </div>
+       <div class="form-row mt-3">
+         <div class="form-group col-md-6 mx-auto">
+          <button type="submit" name="submit_count" class="btn btn-primary w-50 d-block mx-auto">Submit</button>
+         </div>
+       </div>
+       <?php
+          include '../calculatorAction.php';
+       ?>
+     </form>
+    </div>
 
    <?php displayFooter(); ?>
 

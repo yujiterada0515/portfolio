@@ -79,39 +79,7 @@
             echo "Error";
         }
         
-    }elseif(isset($_POST['submit_count'])){
-        $itemCounts = $_POST['item_counts'];
-        
-        function desplayItemsForm(){
-        for($i = 1; $i <=$itemCounts; $i++){
-            echo "
-            <form action='../UI/items_form.php' method='post'>
-            <div class='row'>
-     
-              <div class='form-group col-md-3'>
-                 <input type='text' name='materials_name' placeholder='Materials Name' requierd>
-              </div> 
-     
-              <div class='form-group col-md-3'>
-               <input type='text' name='price' placeholder='Price' required>
-              </div> 
-              
-              <div class='form-group col-md-3'>
-               <input type='text' name='amount' placeholder='Amount' required>
-              </div> 
-              
-              <div class='form-group col-md-3'>
-               <input type='text' name='total' placeholder='Total' required>
-              </div> 
-     
-               <button type='submit' name='calculator' class='btn btn-danger form-control w-25'>Calculator</button>
-     
-            </div>
-          </form>
-        </div>
-            ";
-        }
-      }
+    
     }elseif(isset($_POST['calculator'])){
         $materName = $_POST['materials_name'];
         $matePrice = $_POST['price'];
