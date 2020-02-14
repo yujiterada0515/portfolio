@@ -13,7 +13,8 @@
                 return 1;
             }
 
-        }   
+        }
+
         public function createUser($first_name, $last_name, $address, $contact_number, $email){
             $account_id = $this->conn->insert_id;
 
@@ -72,41 +73,48 @@
           
       }
 
-      public function insertToTable($photo){
-          $sql = "UPDATE contract SET photo = '$photo' WHERE user_id = '2'";
 
-          if($this->conn->query($sql)){
-              //successful in inserting the picture
-              return 1;
-          }else{
-              echo "Not saved " .$this->conn->error;
-              return 0;
-          }
+      public function insertAllCalculation($mateName, $matePrice, $mateQuan){
+          $sql ="INSERT INTO materials(material_name, material_price, material_quantity) VALUES ('$matename','$matePrice','$mateQuan')";
+
+            if ($conn->query($sql)) {
+                echo "New record created successfully";
+            } else {
+                echo "Error: " . $sql . "<br>" . $conn->error;
+            }
+
+            $conn->close();
+            
+
       }
 
-      public function displayAllImages(){
-          $sql = "SELECT photo FROM contract";
 
-          $rows = array();
+      public function itemAllCalculation($matePrice, $mateQuan){
 
-          $result = $this->conn->query($sql);
-          if($result->num_rows > 0){
-              while($row = $result->fetch_assoc()){
-                  $rows[] = $row;
-              }
-              return $rows;
-          }
+        $this->matePrice = $matePrice;
+        $this->mateQuan = $mateQuan;
+
       }
 
-      public function searchSpecificImage($id){
-        $sql = "SELECT photo FROM contract WHERE user_id = '$id'";
-        $result = $this->conn->query($sql);
+      public function itemCalculation(){
+          return $this->matePrice[materials_price] * $this->mateQuan[materials_quantity] * .08;
+      }
 
-        $row = $result->fetch_assoc();
+      //Do not touch in DeleteRecor
+      public function deleteRecord($contract_id){
 
-        return $row;
-    }
+        $sql ="DELETE FROM `contract` WHERE contract_id='$contract_id'";
 
+        $result =$this->conn->query($sql);
 
-}
+        if(!$result){
+            die("cannot delete clients: ".$this->conn->connect_error);
+        }else{
+            header("Location: UI/dashbord.php");
+        }
+
+      }
+
+ }
+
 ?>

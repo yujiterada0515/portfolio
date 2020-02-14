@@ -2,7 +2,7 @@
     require 'class/user.php';
     $user = new User();
 
-    // session_start();
+    session_start();
 
     if(isset($_POST['signup'])){
         $first_name = $_POST['first_name'];
@@ -61,35 +61,7 @@
  
        $user->addContract($clientName, $homeAddress, $contactNumber, $email, $startDay, $deadLine, $claimDay, $description, $materials, $photo, $totalFee);
 
-    }elseif(isset($_POST['upload'])){
-        $photo = $_FILES['photo']['client_name'];
-
-        $target_dir = "upload/"; //folder in your computer where you will place the picture
-        $target_file = $target_dir . basename($_FILES["photo"]["client_name"]);
-
-        $upload = $user->insertToTable($photo);
-
-        if($uplosd == 1){
-            // Upload file
-            move_uploaded_file($_FILES['photo']['tmp_name'],$target_file);
-            //move_uploaded_file ~~~ transfers the picture from one location
-            // to another location
-            header("Location: ../add_new_contract");
-        }else{
-            echo "Error";
-        }
-        
-    
-    }elseif(isset($_POST['calculator'])){
-        $materName = $_POST['materials_name'];
-        $matePrice = $_POST['price'];
-        $mateNum = $_POST['how_many'];
-        $mateTotal = $_POST['total'];
-
-
     }
-
- 
 
 
 ?>
