@@ -1,8 +1,10 @@
 <?php 
    include '../userAction.php';
-   include '../class/displayheader.php';
+   // require_once '../class/user.php';
+
+   // $user = new User();
+   include '../class/displayHeader.php';
    include '../class/displayFooter.php';
-   // include '../class/database.php';
 ?>
 
 <!DOCTYPE html>
@@ -20,16 +22,16 @@
    
 <?php displayHeader(); ?>
 
-    <div class="container mt-5">
+   <div class="container mt-5">
       <div class="row">
-         <div class="col-md-6">
-            <h4>All Contracts</h4>
+         <div class="col-md-12">
+            <h3>All Contracts</h3>
          </div>
-         <div class="col-md-6">
+         <!-- <div class="col-md-6">
             <input type="button" onClick="location.href='add_new_contract.php'" value="ADD NEW CONTRACT">
-         </div>
+         </div> -->
       </div>
-    </div>
+   </div>
    <div class="container">
       <div class="row">
       <table class="table mt-4">
@@ -38,7 +40,6 @@
                 <th>#</th>
                 <th>Client</th>
                 <th>Start Day</th>
-                <th>Ongoing</th>
                 <th>Deadline Day</th>
                 <th>Claim Day</th>
                 <th></th>
@@ -52,18 +53,17 @@
                $userlist = $user->getAllcontracts();
 
                foreach($userlist as $user){
-                  $userID = $user['contract_id'];
+                  $contract_id = $user['contract_id'];
 
               echo "
                 <tr>
                 <th scope='row'>".$user['contract_id']."</th>
                 <td>".$user['client_name']."</td>
                 <td>".$user['start_date']."</td>
-                <td>Yes or No</td>
                 <td>".$user['deadline_date']."</td>
                 <td>".$user['claim_day']."</td>
-                <td><a href=''><button type='button' class='btn btn-outline-warning'><i class='fas fa-edit'>Detail</i></button></a></td>
-                <td><a href=''><button type='button' class='btn btn-outline-danger'>Delete</button></a></td>
+                <td><a href='details.php'><button type='button' class='btn btn-outline-warning'><i class='fas fa-edit'>Detail</i></button></a></td>
+                <td><a href='../deleteAction.php?actiontype=delete&contract_id=$contract_id'><button type='button' name='delete' class='btn btn-outline-danger'>Delete</button></a></td>
                 </tr>
                 ";
                  }

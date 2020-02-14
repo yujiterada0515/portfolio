@@ -1,6 +1,7 @@
 
-<?php include '../userAction.php';
-      include '../class/displayheader.php';
+<?php 
+      include '../userAction.php';
+      include '../class/displayHeader.php';
       include '../class/displayFooter.php';
       
 ?>
@@ -65,6 +66,7 @@
             <div class="form-group col-md-6">
               <textarea name="description" id="" cols="50" rows="10" placeholder="Description" class=" form-control" required></textarea>
             </div>
+
             <div class="form-group col-md-6">
               <textarea name="materials" id="" cols="50" rows="10" placeholder="Materials Needed" class="form-control" required></textarea>
             </div>
@@ -74,17 +76,27 @@
             <div class="form-group col-md-3">
               <button type="submit" name="save" class="btn btn-outline-primary form-control">SAVE</button>
             </div>
+
             <div class="form-group col-md-3">
                 <input type="file" name="photo" class="form-control">
                 <input type='submit' value='Upload' name='upload' class="btn btn-primary btn-block">
             </div>
+
             <div class="form-group col-md-3 text-right">
+              <div class='input-group'>
+                <select class='custom-select' name='ongoing' id='inputGroupSelect01'>
+                  <option selected>Ongoing</option>
+                  <option value='Yes'>Yes</option>
+                  <option value='No'>No</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group col-md-3">
+              <input type="number " name="totalFee" class="form-control" placeholder="Total Fee">
               <a href="calculator.php">calculator</a>
             </div>
-            <div class="form-group col-md-3">
-              <p> <span class="glyphicon glyphicon-time"></span>Feb22, 2020</p>
-              <input type="number " name="totalFee" class="form-control" placeholder="Total Fee">
-            </div>
+
           </div>
         </form>
      </div>
