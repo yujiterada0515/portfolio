@@ -1,18 +1,26 @@
 <?php
 
    include '../class/user.php';
+   include '../class/calculator.php';
+
+   $calc = new Calculator();
 
     if(isset($_POST['submit_count'])){
         $item_count = $_POST['item_count'];
         
+        // <input type='text' name='material_name[]' class='form-control border border-primary' placeholder='Material Name'>
         echo "<div class='container mt-5'>";
         for($i = 1; $i <= $item_count; $i++){
             echo "
                 <form action='' method='post'>
                  <div class='form-row my-2'>
                     <div class='form-group col-md-4'>
-                       
-                        <input type='text' name='material_name[]' class='form-control border border-primary' placeholder='Material Name'>
+
+                        <select name='material_name[]'>
+                            ".$calc->getMaterials()."
+                        </select>
+                        
+                      
                     </div>
                     <div class='form-group col-md-4'>
                         <input type='text' name='material_price[]' class='form-control  border border-danger' placeholder='Price'>

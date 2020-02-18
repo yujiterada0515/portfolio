@@ -52,16 +52,19 @@
         $deadLine = $_POST['deadLine'];
         $claimDay = $_POST['claimDay'];
         $description = $_POST['description'];
-        $materials = $_POST['materials'];
         $photo = $_POST['photo'];
-        $totalFee = $_POST['totalFee'];
 
         // echo $clientName, $homeAddress, $contactNumber, $email, $startDay, $deadLine, $clamDay, $description, $materials, $totalFee;
-       
- 
-       $user->addContract($clientName, $homeAddress, $contactNumber, $email, $startDay, $deadLine, $claimDay, $description, $materials, $photo, $totalFee);
+       $user->addContract($clientName, $homeAddress, $contactNumber, $email, $startDay, $deadLine, $claimDay, $description, $photo);
 
+    }elseif(isset($_POST['upload'])){
+        $photo = $_POST['photo'];
+
+        $upload = $user->insertToTable($photo);
+   
     }
+    
+
 
 
 ?>
