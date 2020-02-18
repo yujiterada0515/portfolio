@@ -1,6 +1,7 @@
 <?php
     include '../class/displayHeader.php';
     include '../class/displayFooter.php';
+    session_start();
 ?>
 
 <!DOCTYPE html>

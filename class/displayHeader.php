@@ -9,7 +9,7 @@ function displayHeader(){
     echo "<ul class='navbar-nav'>";
     echo "<li class='nav-item'><a href='dashbord.php' class='nav-link'>ALL CLIENTS</a></li>";
     echo "<li class='nav-item'><a href='add_new_contract.php' class='nav-link'>ADD NEW CONTRACT</a></li>";
-    echo "<li class=nav-item'><a href='my_posts.php' class='nav-link'></a></li>";
+    echo "<li class=nav-item'><a href='addMaterials.php' class='nav-link'>ADD MATERIALS</a></li>";
     echo "<li class='nav-item'><a href='categories.php' class='nav-link'>   </a><li>";
     echo "</ul>";
     echo "<ul class='navbar-nav ml-auto'>";

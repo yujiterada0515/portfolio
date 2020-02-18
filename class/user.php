@@ -1,5 +1,5 @@
 <?php
-   include 'database.php';
+   require_once 'database.php';
 
    class User extends Database{
         public function createAccount($username, $password){
@@ -42,23 +42,23 @@
            }
        }
 
-       public function addContract($clientName, $homeAddress, $contactNumber, $email, $startDay, $deadLine, $claimDay, $description, $materials,$photo, $totalFee){
+       public function addContract($clientName, $homeAddress, $contactNumber, $email, $startDay, $deadLine, $claimDay, $description, $photo){
 
-        $sql = "INSERT INTO contract(client_name, home_address, contact_number, email, start_date, deadline_date, claim_day, description, materials_needed, photo, total_fee) VALUES ('$clientName', '$homeAddress', '$contactNumber', '$email', '$startDay', '$deadLine', '$claimDay', '$description', '$materials', '$photo', '$totalFee')";
+        $sql = "INSERT INTO contracts(client_name, home_address, contact_number, email, start_date, deadline_date, claim_day, description, photo) VALUES ('$clientName', '$homeAddress', '$contactNumber', '$email', '$startDay', '$deadLine', '$claimDay', '$description', '$photo')";
 
         // echo $sql;
 
         $result =$this->conn->query($sql);
 
         if($result == false){
-          die("cannot add clients: ".$this->conn->connect_error);
+          die("cannot add contracts: ".$this->conn->error);
         }else{
-          header("Location: UI/dashbord.php");
+          header("Location: UI/materialsNeeded.php");
         }
       }
 
       public function getAllcontracts(){
-          $query = "SELECT * FROM contract";
+          $query = "SELECT * FROM contracts";
           $result = $this->conn->query($query);
 
           $rows = array();
@@ -69,38 +69,61 @@
               }
               return $rows;
           }
-          
-          
       }
 
+      function getOneContract($id){
+          $sql = "SELECT * FROM contracts WHERE contract_id = '$id'";
+          $result = $this->conn->query($sql);
 
-      public function insertAllCalculation($mateName, $matePrice, $mateQuan){
-          $sql ="INSERT INTO materials(material_name, material_price, material_quantity) VALUES ('$matename','$matePrice','$mateQuan')";
+          if($result->num_rows==1){
+              $row = array();
 
-            if ($conn->query($sql)) {
-                echo "New record created successfully";
-            } else {
-                echo "Error: " . $sql . "<br>" . $conn->error;
+              while($rows = $result->fetch_assoc()){
+                  $row[] = $rows;
+              }
+              return $row;
+          }else{
+              return FALSE;
+          }
+      }
+    //Photo function from here
+      public function insertToTable($photo){
+        $sql= "UPDATE contracts SET photo = '$photo' WHERE photo = '11'";
+
+        if($this->conn->query($sql)){
+            //successful in inserting the picture
+            return 1;
+        }else{
+            echo "Not saved " .$this->conn->error;
+            return 0;
+        }
+    }
+
+    public function showAllImages($photo){
+        $sql = "SELECT photo FROM cntracts";
+
+        $rows = array();
+
+        $result = $this->conn->query($sql);
+        if ($result->num_rows > 0){
+            while($row = $result->fetch_assoc()){
+                $rows[] = $row;
             }
 
-            $conn->close();
-            
+            return $rows;
+        }
+    }
 
-      }
+    public function searchSpecificImage($id){
+        $sql = "SELECT photo FROM contracts WHERE id = '$id'";
+        $result = $this->conn->query($sql);
 
+        $row = $result->fetch_assoc();
 
-      public function itemAllCalculation($matePrice, $mateQuan){
+        return $row;
+    }
 
-        $this->matePrice = $matePrice;
-        $this->mateQuan = $mateQuan;
-
-      }
-
-      public function itemCalculation(){
-          return $this->matePrice[materials_price] * $this->mateQuan[materials_quantity] * .08;
-      }
-
-      //Do not touch in DeleteRecor
+    //Do not touch in Delete function
       public function deleteRecord($contract_id){
 
         $sql ="DELETE FROM `contract` WHERE contract_id='$contract_id'";
@@ -115,6 +138,22 @@
 
       }
 
- }
+      public function addMaterials(){
+
+        $sql = "INSERT INTO materials(material_name, material_price, material_quantity) VALUES ('$material_name', '$material_price', '$material_quantity')";
+
+        $result = $this->conn->query($sql);
+
+        if($result == 0){
+            die("CANNOT ADD MATERIALS: ".$this->conn->connect_error);
+        }else{
+            header("Location: add_new_contract.php");
+
+      }
+
+    }
+
+
+}
 
 ?>

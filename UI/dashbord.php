@@ -54,20 +54,22 @@
 
                foreach($userlist as $user){
                   $contract_id = $user['contract_id'];
+            ?>
 
-              echo "
+            
                 <tr>
-                <th scope='row'>".$user['contract_id']."</th>
-                <td>".$user['client_name']."</td>
-                <td>".$user['start_date']."</td>
-                <td>".$user['deadline_date']."</td>
-                <td>".$user['claim_day']."</td>
-                <td><a href='details.php'><button type='button' class='btn btn-outline-warning'><i class='fas fa-edit'>Detail</i></button></a></td>
+                <th scope='row'><?php echo $user['contract_id'] ?></th>
+                <td><?php echo $user['client_name'] ?></td>
+                <td><?php echo $user['start_date'] ?></td>
+                <td><?php echo $user['deadline_date'] ?></td>
+                <td><?php echo $user['claim_day'] ?></td>
+                <td><a href='details.php?contract_id=<?php echo $user['contract_id'] ?>'><button type='button' class='btn btn-outline-info'><i class='fas fa-edit'>Detail</i></button></a></td>
+                <td><a href='editContract.php'><button type='button' class='btn btn-outline-warning'>Edit</button></a></td>
                 <td><a href='../deleteAction.php?actiontype=delete&contract_id=$contract_id'><button type='button' name='delete' class='btn btn-outline-danger'>Delete</button></a></td>
                 </tr>
-                ";
-                 }
-               ?>
+                
+                 
+               <?php } ?>
             </tbody>
                   
             </table>
@@ -107,3 +109,24 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.min.js"></script>
 </body>
 </html>
+<?php
+
+// $userlist = $user->getAllcontracts();
+
+// foreach($userlist as $user){
+//    $contract_id = $user['contract_id'];
+
+// echo "
+//  <tr>
+//  <th scope='row'>".$user['contract_id']."</th>
+//  <td>".$user['client_name']."</td>
+//  <td>".$user['start_date']."</td>
+//  <td>".$user['deadline_date']."</td>
+//  <td>".$user['claim_day']."</td>
+//  <td><a href='details.php'><button type='button' class='btn btn-outline-info'><i class='fas fa-edit'>Detail</i></button></a></td>
+//  <td><a href='.php'><button type='button' class='btn btn-outline-warning'>Edit</button></a></td>
+//  <td><a href='../deleteAction.php?actiontype=delete&contract_id=$contract_id'><button type='button' name='delete' class='btn btn-outline-danger'>Delete</button></a></td>
+//  </tr>
+//  ";
+//   }
+?>
