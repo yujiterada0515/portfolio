@@ -15,15 +15,16 @@
                 <form action='' method='post'>
                  <div class='form-row my-2'>
                     <div class='form-group col-md-4'>
-
-                        <select name='material_name[]'>
-                            ".$calc->getMaterials()."
+                        <select name='material_name[]' class='form-control border border-primary'>
+                            <option selected disabled>CHOOSE A MATERIAL:</option>
+                            ";
+                            $calc->getDropdownMaterials();
+                           
+            echo"
                         </select>
-                        
-                      
                     </div>
                     <div class='form-group col-md-4'>
-                        <input type='text' name='material_price[]' class='form-control  border border-danger' placeholder='Price'>
+                        <input type='text' name='material_price[]'git class='form-control  border border-danger' placeholder='Price'>
                     </div>
                     <div class='form-group col-md-4'>
                         <input type='number' name='material_quantity[]' class='form-control border border-warning' placeholder='Quantity'>
