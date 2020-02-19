@@ -44,6 +44,8 @@
 
        public function addContract($clientName, $homeAddress, $contactNumber, $email, $startDay, $deadLine, $claimDay, $description, $photo){
 
+        $contract_id = $this->conn->insert_id;
+
         $sql = "INSERT INTO contracts(client_name, home_address, contact_number, email, start_date, deadline_date, claim_day, description, photo) VALUES ('$clientName', '$homeAddress', '$contactNumber', '$email', '$startDay', '$deadLine', '$claimDay', '$description', '$photo')";
 
         // echo $sql;
@@ -53,7 +55,21 @@
         if($result == false){
           die("cannot add contracts: ".$this->conn->error);
         }else{
-          header("Location: UI/materialsNeeded.php");
+            $sql2 = "SELECT contract_id FROM contracts WHERE client_name = '$clientName' AND home_address = '$homeAddress' AND contact_number = '$contactNumber' AND email = '$email' AND start_date = '$startDay' AND deadline_date = '$deadLine' AND claim_day = '$claimDay' AND description = '$description'";
+
+            $result = $this->conn->query($sql2);
+            
+           if($result->num_rows == 1){
+            while($contract = $result->fetch_assoc()){
+                $contract_id = $contract['contract_id'];
+            }
+            
+            header("Location: UI/materialsNeeded.php?contract_id=$contract_id");
+            }else{
+                echo "ERROR: ".$this->conn->error;
+            }
+
+          
         }
       }
 
@@ -100,7 +116,7 @@
     }
 
     public function showAllImages($photo){
-        $sql = "SELECT photo FROM cntracts";
+        $sql = "SELECT photo FROM contracts";
 
         $rows = array();
 
@@ -137,21 +153,6 @@
         }
 
       }
-
-      public function addMaterials(){
-
-        $sql = "INSERT INTO materials(material_name, material_price, material_quantity) VALUES ('$material_name', '$material_price', '$material_quantity')";
-
-        $result = $this->conn->query($sql);
-
-        if($result == 0){
-            die("CANNOT ADD MATERIALS: ".$this->conn->connect_error);
-        }else{
-            header("Location: add_new_contract.php");
-
-      }
-
-    }
 
 
 }

@@ -35,7 +35,7 @@
             $_SESSION['first_name'] = $login['first_name'];
             $_SESSION['username'] = $login['username'];
             if($_SESSION['status']=='A'){
-                header("Location: UI/addItem.php");
+                header("Location: UI/admin.php");
             }elseif($_SESSION['status']=='U'){
                 header("Location: UI/dashbord.php");
             }
@@ -57,12 +57,13 @@
         // echo $clientName, $homeAddress, $contactNumber, $email, $startDay, $deadLine, $clamDay, $description, $materials, $totalFee;
        $user->addContract($clientName, $homeAddress, $contactNumber, $email, $startDay, $deadLine, $claimDay, $description, $photo);
 
-    }elseif(isset($_POST['upload'])){
-        $photo = $_POST['photo'];
-
-        $upload = $user->insertToTable($photo);
-   
     }
+    //elseif(isset($_POST['upload'])){
+    //     $photo = $_POST['photo'];
+
+    //     $upload = $user->insertToTable($photo);
+   
+    // }
     
 
 

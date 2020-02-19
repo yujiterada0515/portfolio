@@ -14,6 +14,32 @@
                 }
             }
         }
+
+        public function getMaterialPrice($material_id){
+            $sql = "SELECT material_price FROM materials WHERE material_id = '$material_id'";
+            
+            $result = $this->conn->query($sql);
+            if($result->num_rows > 0){
+                while($price = $result->fetch_assoc()){
+                    return $price;
+                }
+            }
+        }
+
+        public function addOrder($material_id, $material_quantity, $subtotal, $item_count, $contract_id){
+
+            for($i = 0; $i < $item_count; $i++){
+                $sql = "INSERT INTO orders (contract_id, material_id, quantity, subtotal) VALUES ('$contract_id','$material_id[$i]', '$material_quantity[$i]', '$subtotal[$i]')";
+
+                $result = $this->conn->query($sql);
+            }
+            
+            if($result){
+                echo "RECORDED SUCCESSFULLY";
+            }else{
+                die("ERROR: ".$this->conn->error);
+            }
+        }
         //home work
         //How many Items do you neesd 
         //echo  material_id, material_name, material_price
