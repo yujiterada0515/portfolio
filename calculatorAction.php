@@ -1,6 +1,5 @@
 <?php
 
-   include '../class/user.php';
    include '../class/calculator.php';
 
    $calc = new Calculator();
@@ -24,9 +23,6 @@
                         </select>
                     </div>
                     <div class='form-group col-md-4'>
-                        <input type='text' name='material_price[]'git class='form-control  border border-danger' placeholder='Price'>
-                    </div>
-                    <div class='form-group col-md-4'>
                         <input type='number' name='material_quantity[]' class='form-control border border-warning' placeholder='Quantity'>
                     </div>
                   </div>
@@ -35,7 +31,7 @@
         }
 
         echo "<div class='form-row mt-3'>
-                <div class='form-group col-md-12'>
+                <div class='form-group col-md-8 mx-auto'>
                     <button type='submit' name='calculate' class='btn btn-danger btn-lg form-control'>Calculate</button>
                 </div>
             </div>";
@@ -45,15 +41,13 @@
 
     }elseif(isset($_POST['calculate'])){
         $mateName = $_POST['material_name'];
-        $matePrice = $_POST['material_price'];
         $mateQuan = $_POST['material_quantity'];
 
-        $user->insertAllCalculation($mateName, $matePrice, $mateQuan);
+        print_r($mateName);
 
-       
-       
 
-       
+
+        // $user->insertAllCalculation($mateName, $matePrice, $mateQuan);
     }
 
 ?>

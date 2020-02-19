@@ -11,7 +11,8 @@
             }
             
             if($result){
-                echo "ITEMS SAVED";
+                // echo "ITEMS SAVED";
+                header("Location: dashbord.php");
             }else{
                 echo "ERROR: ".$this->conn->error;
             }

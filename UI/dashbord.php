@@ -56,7 +56,6 @@
                   $contract_id = $user['contract_id'];
             ?>
 
-            
                 <tr>
                 <th scope='row'><?php echo $user['contract_id'] ?></th>
                 <td><?php echo $user['client_name'] ?></td>

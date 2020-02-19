@@ -1,3 +1,9 @@
+<?php 
+      
+      include '../class/displayHeader.php';
+      include '../class/displayFooter.php';
+      session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,24 +19,25 @@
 </head>
 
 <body>
+<?php displayHeader(); ?>
     <div class="navbar">
-        <nav class="navbar navbar-expand-lg navbar-white bg-transparent fixed-top">
-            <ul class="navbar-nav mr-auto">
+        <!-- <nav class="navbar navbar-expand-lg navbar-white bg-transparent fixed-top"> -->
+            <!-- <ul class="navbar-nav mr-auto">
             <li class="nav-item">
                     <a href="admin.php" class="nav-link text-danger" style="opacity: 1;"><i class="fas fa-chevron-left fa-2x text-secondary"></i></a>
                 </li>
-            </ul>
-            <ul class="navbar-nav float-right">
+            </ul> -->
+            <!-- <ul class="navbar-nav float-right"> -->
                 <!-- <li class="nav-item">
                     <a href="profile.php" class="nav-link text-primary"><i class="fas fa-user"></i> Profile</a>
                 </li> -->
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                     <a href="logout.php" class="nav-link text-danger" style="opacity: 1;"><i
                             class="fas fa-user-times fa-2x"></i></a>
                 </li>
             </ul>
         </nav>
-    </div>
+    </div> -->
 
     <div class="container w-75 mx-auto mt-5">
         <div class="card mx-auto my-5">
@@ -55,7 +62,6 @@
                     include '../itemAction.php';
                 ?>
             </div>
-
+<?php displayFooter(); ?>
 </body>
-
 </html>
