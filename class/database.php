@@ -15,7 +15,7 @@
             }
 
             return $this->conn;
-            //HI Yuji-san
+            //HI kirby nice to meet you,man.
         }
     }
 ?>
