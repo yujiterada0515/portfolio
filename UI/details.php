@@ -28,7 +28,7 @@
        <div class='container mt-5'>
        <h2 class='display-5'># ".$user['contract_id']."</h2>
       <div class='border-bottom border-left mt-3'>
-        <h4>Client Name: ".$user['client_name']." </h4>
+        <h4><span class='text-secondary'>Client Name: </span>".$user['client_name']."</h4>
         <h4>Home Address: ".$user['home_address']."</h4>
         <h4>Cntact Number: ".$user['contact_number']."</h4>
         <p>".$user['photo']."</p>

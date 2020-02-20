@@ -5,6 +5,7 @@
    // $user = new User();
    include '../class/displayHeader.php';
    include '../class/displayFooter.php';
+  
 ?>
 
 <!DOCTYPE html>
