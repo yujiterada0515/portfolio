@@ -87,19 +87,43 @@
           }
       }
 
-      function getOneContract($id){
-          $sql = "SELECT * FROM contracts WHERE contract_id = '$id'";
+      function getOneContract($contract_id){
+          $sql = "SELECT * FROM contracts WHERE contracts.contract_id = '$contract_id'";
+            // echo $sql;
           $result = $this->conn->query($sql);
+          $rows = array();
 
-          if($result->num_rows==1){
-              $row = array();
-
-              while($rows = $result->fetch_assoc()){
-                  $row[] = $rows;
+          if($result->num_rows > 0){
+              while($row = $result->fetch_assoc()){
+                  $rows[] = $row;
               }
-              return $row;
+              return $rows;
           }else{
               return FALSE;
+          }
+      }
+      function getContractMaterials($contract_id){
+          $sql = "SELECT * FROM orders INNER JOIN materials ON materials.material_id = orders.material_id WHERE orders.contract_id = '$contract_id'";
+          $result = $this->conn->query($sql);
+          $rows = array();
+
+          if($result->num_rows > 0){
+              while($row = $result->fetch_assoc()){
+                  $rows[] = $row;
+              }
+              return $rows;
+          }else{
+              return FALSE;
+          }
+      }
+      function getTotalAmount($contract_id){
+          $sql = "SELECT SUM(subtotal) AS total FROM orders WHERE contract_id = '$contract_id'";
+
+          $result = $this->conn->query($sql);
+          if($result->num_rows > 0){
+              while($row = $result->fetch_assoc()){
+                  return $row['total'];
+              }
           }
       }
     //Photo function from here
@@ -142,12 +166,12 @@
     //Do not touch in Delete function
       public function deleteRecord($contract_id){
 
-        $sql ="DELETE FROM `contract` WHERE contract_id='$contract_id'";
+        $sql ="DELETE FROM `contracts` WHERE contract_id='$contract_id'";
 
         $result =$this->conn->query($sql);
 
         if(!$result){
-            die("cannot delete clients: ".$this->conn->connect_error);
+            die("cannot delete clients: ".$this->conn->error);
         }else{
             header("Location: UI/dashbord.php");
         }

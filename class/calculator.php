@@ -35,29 +35,11 @@
             }
             
             if($result){
-                echo "RECORDED SUCCESSFULLY";
+                header("Location: details.php?contract_id=$contract_id");
             }else{
                 die("ERROR: ".$this->conn->error);
             }
         }
-        //home work
-        //How many Items do you neesd 
-        //echo  material_id, material_name, material_price
-    //     public function getMaterials($id){
-    //      $sql = "SELECT * FROM materials WHERE material_id = '$id'";
-    //      $result = $this->query($sql);
-
-    //     if($result->num_rows > 1){
-    //         $row = array();
-
-    //         while($rows =$result->fetch_assoc()){
-    //             $row[] = $rows;
-    //         }
-    //         return $row;
-    //     }else{
-    //         return 0;
-    //     }
-    //   }
     }
 
 ?>

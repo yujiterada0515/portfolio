@@ -58,16 +58,16 @@
                      $contract_id = $contract['contract_id'];
                   ?>
 
-                  <tr>
-                  <th scope='row'><?php echo $contract['contract_id'] ?></th>
-                  <td><?php echo $contract['client_name'] ?></td>
-                  <td><?php echo $contract['start_date'] ?></td>
-                  <td><?php echo $contract['deadline_date'] ?></td>
-                  <td><?php echo $contract['claim_day'] ?></td>
-                  <td><a href='details.php?contract_id=<?php echo $contract['contract_id'] ?>'><button type='button' class='btn btn-outline-info'><i class='fas fa-edit'>Detail</i></button></a></td>
-                  <td><a href='editContract.php'><button type='button' class='btn btn-outline-warning'>Edit</button></a></td>
-                  <td><a href='../deleteAction.php?actiontype=delete&contract_id=$contract_id'><button type='button' name='delete' class='btn btn-outline-danger'>Delete</button></a></td>
-                  </tr>
+                     <tr>
+                     <th scope='row'><?php echo $contract['contract_id'] ?></th>
+                     <td><?php echo $contract['client_name'] ?></td>
+                     <td><?php echo $contract['start_date'] ?></td>
+                     <td><?php echo $contract['deadline_date'] ?></td>
+                     <td><?php echo $contract['claim_day'] ?></td>
+                     <td><a href='details.php?contract_id=<?php echo $contract['contract_id'] ?>'><button type='button' class='btn btn-outline-info'><i class='fas fa-edit'>Detail</i></button></a></td>
+                     <td><a href='editContract.php'><button type='button' class='btn btn-outline-warning'>Edit</button></a></td>
+                     <td><a href='../deleteAction.php?actiontype=delete&contract_id=<?php echo $contract_id?>' class='btn btn-outline-danger'>Delete</a></td>
+                     </tr>
                   
                   
                   <?php }

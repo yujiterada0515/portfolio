@@ -18,30 +18,66 @@
 
    <?php displayHeader(); ?>
    <?php
+    $contract_id = $_GET['contract_id'];
 
-   $userlist = $user->getOnecontract($_GET['contract_id']);
+    $contractlist = $user->getOnecontract($contract_id);
+    $materialList = $user->getContractMaterials($contract_id);
+    $total_amount = $user->getTotalAmount($contract_id);
 
-   foreach($userlist as $user){
-       $contract_id = $user['contract_id'];
-
+    // print_r($contractlist);
+   foreach($contractlist as $contract){
+       
      echo "
        <div class='container mt-5'>
-       <h2 class='display-5'># ".$user['contract_id']."</h2>
+       <h2 class='display-5'># ".$contract['contract_id']."</h2>
       <div class='border-bottom border-left mt-3'>
-        <h4><span class='text-secondary'>Client Name: </span>".$user['client_name']."</h4>
-        <h4>Home Address: ".$user['home_address']."</h4>
-        <h4>Cntact Number: ".$user['contact_number']."</h4>
-        <p>".$user['photo']."</p>
+        <h4><span class='text-secondary'>Client Name: </span>".$contract['client_name']."</h4>
+        <h4>Home Address: ".$contract['home_address']."</h4>
+        <h4>Cntact Number: ".$contract['contact_number']."</h4>
+        <p class=''>".$contract['photo']."</p>
      </div>
-       <h2 class='display-5'>Description</h2>
+       <h2 class='display-5 mt-5'>Description</h2>
       <div class='border-bottom border-left'>
-        <h4>".$user['description']."</h4>
+        <h4>".$contract['description']."</h4>
      </div>
-       <h2 class='display-5'>Claim Bills Amount</h2>
-      <div class='border-bottom border-left'>
-        <h4>Input　materials</h4>
-        <h4 class='text-right'>Total Amount: </h4>
-     </div>
+       <h2 class='display-5 mt-5'>Claim Bills Amount</h2>
+       <h4>Materials Needed</h4>
+      <div class='row'>
+                <table class='table w-25'>
+                <thead class='thead-dark'>
+                    <tr>
+                    <th>Material</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Subtotal</th>
+                    </tr>
+                    </thead>
+                    <tbody>";
+            if($materialList){
+                foreach($materialList as $materials){
+                    $subtotal = $materials['subtotal'];
+                    echo "
+                        <tr>
+                            <th>".$materials['material_name']."</th>
+                            <th>".$materials['material_price']."</th>
+                            <th>".$materials['quantity']."</th>
+                            <th>".$subtotal."</th>
+                        </tr>
+                    ";
+                }
+            }else{
+                echo "<tr>
+                    <th colspan=4 class='text-center'>NO RECORDS FOUND</th>
+                </tr>";
+            }
+            echo "</tbody>
+            </table>
+        </div>
+        ";
+    }
+    echo "
+
+     <h4 class=''>Total Amount: ".$total_amount."</h4>
      <div class='row mt-5'>
        <div class='form-group col-3 border border-primary'>
          <h5 class='pt-2 text-center'> <strong>Plummer Company M.T</strong> </h5>
@@ -54,8 +90,7 @@
        </div>
      </div>
    </div>
-       ";
-    }
+    ";
    ?>
 
    <?php displayFooter(); ?>

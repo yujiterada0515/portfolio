@@ -20,7 +20,6 @@
 <body>
 
 <?php displayHeader(); ?>
-
   <div class="container w-75 my-5">
    <div class="card mx-auto my-5">
        <div class="card-header bg-primary">

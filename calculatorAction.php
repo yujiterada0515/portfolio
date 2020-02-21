@@ -36,7 +36,7 @@
                 <div class='form-group col-md-8 mx-auto'>
                     <input type='hidden' name='item_count' value='$item_count'>
                     <input type='hidden' name='contract_id' value='$contract_id'>
-                    <button type='submit' name='calculate' class='btn btn-danger btn-lg form-control'>Calculate</button>
+          <a href='UI/ditails.php'><button type='submit' name='calculate' class='btn btn-danger btn-lg form-control'>Calculate</button></a>
                 </div>
             </div>";
             
@@ -72,6 +72,6 @@
         // print_r($material_quantity);
 
         // print_r($material_fee);
-    };
+    }
 
 ?>
